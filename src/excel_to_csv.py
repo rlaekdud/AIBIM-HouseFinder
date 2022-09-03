@@ -2,8 +2,8 @@ import os
 import pandas as pd
 from sklearn import preprocessing
 
-EXCEL_DIR='D:/SimGNNDATA/ExcelFiles'
-CSV_DIR='D:/SimGNNDATA/CSVFiles'
+EXCEL_DIR='D:/SimGNNDATA/ExcelFiles' #기존 Excel File Folder 경로
+CSV_DIR='D:/SimGNNDATA/CSVFiles' #새로이 저장할 CSV File Folder 경로
 dataset_folder=os.listdir(EXCEL_DIR)
 
 for i,file in enumerate(dataset_folder):
