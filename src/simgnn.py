@@ -30,8 +30,6 @@ class Student(torch.nn.Module):
                             training=self.training)
 
         features=self.convolution_2(features, edge_index)
-        # [4,32] 로 나올텐데                     
-        # features=features.mean(dim=-1)
         features=features.mean(dim=0,keepdim=True)
         features=torch.transpose(features, 0, 1)
 
@@ -44,7 +42,6 @@ class Student(torch.nn.Module):
         features_1 = data["features_1"].to(self.device)
         features_2 = data["features_2"].to(self.device)
 
-        # print(f'edge_index:{edge_index_1.dtype},feature:{features_1.dtype}')
 
         features_vector_1=self.layermodule(features_1,edge_index_1)
         features_vector_2=self.layermodule(features_2,edge_index_2)
@@ -95,7 +92,6 @@ class SimGNN(torch.nn.Module):
         """
         
         features = self.convolution_1(features, edge_index)
-        # print(f'after conv1:{features.shape}')
         features = torch.nn.functional.relu(features)
         features = torch.nn.functional.dropout(features,
                                                p=self.args.dropout,
