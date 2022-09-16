@@ -1,13 +1,14 @@
+from typing import OrderedDict
 import torch
-from param_parser import parameter_parser
+from python.param_parser import parameter_parser
 from torch.nn import MSELoss
 import glob
-from utils import *
-from simgnn import *
+from python.utils import *
+from python.simgnn import *
 
 
 def main():
-    
+
     set_seed(42)
 
     # 사용하는 GPU 사양 및 개수 출력
@@ -30,8 +31,8 @@ def main():
     
 
     # model 불러오기
-    teacher_weight=torch.load(f'./saved_teacher_models/batch100_epoch200_GCN2_13_large.pth')
-    student_weight=torch.load(f'./saved_student_models/batch100_epoch200_GCN2_13_large.pth')
+    teacher_weight=torch.load(f'./saved_teacher_models/batch100_epoch200_GCN2_13_large.pth', map_location = device)
+    student_weight=torch.load(f'./saved_student_models/batch100_epoch200_GCN2_13_large.pth', map_location = device)
     
     teacher_model.load_state_dict(teacher_weight)    
     student_model.load_state_dict(student_weight, strict=False)   
@@ -52,7 +53,9 @@ def main():
 
     # local testdataset folder 경로
     # ex) test_graphs = glob.glob("C:/TestDatasetFolder/" + "*.json")
-    test_graphs = glob.glob("D:/SimGNNDATA/Test1/" + "*.json")
+    test_graphs = glob.glob("/Users/LEESEUNGYEOL/Desktop/Test1/" + "*.json")
+
+
     for graph_pair in (test_graphs):
         data = process_pair(graph_pair)
         origin_ged.append(data['ged'])
@@ -66,8 +69,9 @@ def main():
             print(data)    
 
         prediction= student_model.embedded_forward(embedding_vector1,embedding_vector2)
+
                 
-        ged_file_name.append(graph_pair.split(sep='\\')[1])
+        ged_file_name.append(graph_pair.split(sep='/')[5])
         ged_gt_list.append(data['target'].item())
         ged_predict_list.append(prediction.item())
     
@@ -75,6 +79,7 @@ def main():
     # print(ged_predict_list)
     # print(ged_gt_list)
     # print(origin_ged)
+    
     ged_file_name=np.array(ged_file_name)
     ged_predict_list=np.array(ged_predict_list)
     ged_gt_list=np.array(ged_gt_list)
@@ -82,7 +87,13 @@ def main():
     
     infos = zip(ged_file_name, ged_predict_list)
     infos = sorted(infos, key= lambda x: x[1])
-    print(infos[:20])
+
+    test_result = []
+    for info in infos[:20]: 
+        test_result.append(info[0].split(sep="&")[0])
+
+    print(test_result)
+
 
     
 if __name__=="__main__":

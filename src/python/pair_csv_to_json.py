@@ -3,7 +3,7 @@ import os
 import numpy as np
 import json
 import networkx as nx
-from query import Test
+from python.query import Test
 
 dataset_folder=Test #Query문에 의해 추출된 Model에 돌릴 Test dataset list
 CSV_PATH='D:/SimGNNDATA/CSVFiles' #기존 CSV File Folder 경로

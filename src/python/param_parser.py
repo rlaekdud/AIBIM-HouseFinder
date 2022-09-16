@@ -12,12 +12,12 @@ def parameter_parser():
 
     parser.add_argument("--training-graphs",
                         nargs="?",
-                        default="D:/SimGNNDATA/JSONdataset/Train/",
+                        default="/Users/LEESEUNGYEOL/Desktop/Test1",
 	                help="Folder with training graph pair jsons.")
 
     parser.add_argument("--testing-graphs",
                         nargs="?",
-                        default="D:/SimGNNDATA/JSONdataset/Test/",
+                        default="/Users/LEESEUNGYEOL/Desktop/Test1",
 	                help="Folder with testing graph pair jsons.")
 
     parser.add_argument("--epochs",
