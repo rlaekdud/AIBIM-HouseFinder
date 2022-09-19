@@ -91,25 +91,12 @@ const defaultData = [
 const MainPage = ({ handleDataList }) => {
   const navigator = useNavigate();
 
-  // state 저장된 값이 있다면 초기 값 local storage에 저장
-  const [result, setResult] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = window.localStorage.getItem("roomType");
-
-      if (saved !== null) {
-        // local에 저장된 초기값이 있다면
-        return JSON.parse(saved);
-      } else {
-        return defaultData;
-      }
-    }
-  });
+  // className에 따른 RoomRelation
+  // const [className, setClassName] = useState();
 
   // method
   const handleHome = () => {
-    //홈으로 돌아가면 localStorage 비우기
-    localStorage.clear();
-    setResult();
+    handleDataList();
     navigator("/");
   };
 
@@ -128,9 +115,9 @@ const MainPage = ({ handleDataList }) => {
   };
 
   const handleClassName = (e, params) => {
-    const copyArray = [...result];
-    copyArray[params].className = e;
-    setResult(copyArray);
+    // const copyArray = [...result];
+    // copyArray[params].className = e;
+    // setClassName(copyArray);
   };
 
   const handleRoomRelation = (e, params) => {
@@ -169,7 +156,9 @@ const MainPage = ({ handleDataList }) => {
     <Wrapper>
       <Section>
         <HeaderSection>
+          {/* LandingPage로 */}
           <Header onClick={handleHome} />
+          {/* 언어변경 */}
           <BtnSection>
             <Btn
               onClick={() => {}}

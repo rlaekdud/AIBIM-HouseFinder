@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,8 +13,43 @@ const Wrapper = styled.div`
   height: 85vh;
 `;
 
+const defaultData = [
+  {
+    id: 0,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 1,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 2,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 3,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 4,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 5,
+    className: "",
+    roomRelation: "",
+  },
+];
+
 function App() {
+  // 랜더링 될 20개 dataList
   const [dataList, setDataList] = useState([]);
+  // 최종 데이터 도면 name
   const [resultData, setResultData] = useState("");
 
   return (
