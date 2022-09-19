@@ -46,13 +46,15 @@ const CenterSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3%;
 `;
 
 const ImgDiv = styled.div`
   height: 100%;
   border: 2px solid black;
   background-image: ${(props) => props.backgroundImg};
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
 `;
 
@@ -94,7 +96,7 @@ const ResultPage = ({ resultData }) => {
             }}
           >
             <CenterSection>
-              <SmallSpan color={"#002060"}>Plan</SmallSpan>
+              <SmallSpan color={"#002060"}>Floor Plan</SmallSpan>
             </CenterSection>
             <ImgDiv
               backgroundImg={`url(${require(`/Users/LEESEUNGYEOL/Desktop/AIBIM-HouseFinder/src/Img/${resultData}.png`)})`}

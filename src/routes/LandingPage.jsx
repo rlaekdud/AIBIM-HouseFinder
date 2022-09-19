@@ -14,13 +14,13 @@ const Wrapper = styled.div`
 `;
 const Section = styled.section`
   width: 100%;
-  height: 97%;
+  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 const BottomSection = styled.section`
-  padding: 1em;
+  padding: 3rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;

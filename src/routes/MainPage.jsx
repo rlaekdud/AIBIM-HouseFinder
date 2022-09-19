@@ -8,7 +8,8 @@ import Header from "../components/Header";
 import LogoImg from "../components/LogoImg";
 import RoomCondition from "../components/RoomCondition/RoomCondition";
 import Btn from "../components/Btn";
-import { korDataSet } from "../components/dataSet";
+import { engDataSet, korDataSet } from "../components/dataSet";
+import { useEffect } from "react";
 
 //styled-component
 
@@ -35,7 +36,6 @@ const HeaderSection = styled.section`
 const BtnSection = styled.section`
   display: flex;
   gap: 1em;
-  margin-top: 2em;
 `;
 
 const StyledSelect = styled.div`
@@ -48,12 +48,17 @@ const StyledSelect = styled.div`
 `;
 
 const BottomSection = styled.section`
-  width: 100%;
   display: flex;
-  margin-left: 5%;
   justify-content: flex-end;
   align-items: flex-end;
 `;
+
+// const BottomSection = styled.section`
+//   padding: 1em;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: flex-end;
+// `;
 
 const defaultData = [
   {
@@ -88,47 +93,58 @@ const defaultData = [
   },
 ];
 
-const MainPage = ({ handleDataList }) => {
+const MainPage = ({ dataList, handleDataList }) => {
   const navigator = useNavigate();
 
   // className에 따른 RoomRelation
-  // const [className, setClassName] = useState();
+  const [dataSet, setDataSet] = useState(true);
+  // 임시 선택란 0 ~ 6 번까지 데이터 저장
+  const [data, setData] = useState(defaultData);
 
   // method
   const handleHome = () => {
     handleDataList();
+    setData(() => {
+      data.map((it) => {
+        it.className = "";
+        it.roomRelation = "";
+      });
+    });
     navigator("/");
   };
 
   const onClick = () => {
     // 다음 페이지로 route
     // 해당 state로 관리되는 정보 넘겨주기 -> how ???
-    const submitData = result.filter((it) => it.roomRelation !== "");
+    const submitData = data.filter((it) => it.roomRelation !== "");
     if (submitData.length > 0) {
-      alert(`${JSON.stringify(submitData)} ${submitData.length}`);
+      console.log(submitData);
       navigator("/select");
     } else {
       alert("데이터를 선택해 주세요");
     }
     // 최종 데이터 저장 localStorage에 저장
-    handleDataList(JSON.stringify(submitData));
+    handleDataList(submitData);
   };
 
+  // data 중 params 에 해당하는 index data 변경
   const handleClassName = (e, params) => {
-    // const copyArray = [...result];
-    // copyArray[params].className = e;
-    // setClassName(copyArray);
+    const copyArray = [...data];
+    copyArray[params].className = e;
+    setData(copyArray);
   };
 
+  // className에 따른 RoomRelation
   const handleRoomRelation = (e, params) => {
     if (e) {
-      const copyArray = [...result];
+      const copyArray = [...data];
       copyArray[params].roomRelation = e;
-      setResult(copyArray);
+      setData(copyArray);
     } else {
-      const copyArray = [...result];
+      // error 처리
+      const copyArray = [...data];
       copyArray[params].roomRelation = "";
-      setResult(copyArray);
+      setData(copyArray);
     }
   };
 
@@ -138,11 +154,13 @@ const MainPage = ({ handleDataList }) => {
     for (let i = 0; i < 6; i++) {
       arr.push(
         <RoomCondition
-          data={korDataSet}
-          value={result[i]}
+          data={dataSet ? korDataSet : engDataSet}
+          value={data[i]}
+          // classname 선택
           handleClassName={(e) => {
             handleClassName(e, i);
           }}
+          // roomRelation 선택
           handleRoomRelation={(e) => {
             handleRoomRelation(e, i);
           }}
@@ -161,7 +179,10 @@ const MainPage = ({ handleDataList }) => {
           {/* 언어변경 */}
           <BtnSection>
             <Btn
-              onClick={() => {}}
+              onClick={() => {
+                setDataSet(true);
+                setData(defaultData);
+              }}
               width="5em"
               height="2.5em"
               item="KOR"
@@ -169,7 +190,10 @@ const MainPage = ({ handleDataList }) => {
               borderRadius={"10px"}
             />
             <Btn
-              onClick={() => {}}
+              onClick={() => {
+                setDataSet(false);
+                setData(defaultData);
+              }}
               width="5em"
               height="2.5em"
               item="ENG"
@@ -181,15 +205,18 @@ const MainPage = ({ handleDataList }) => {
         <h2 style={{ color: "#002060", marginBottom: "3%" }}>
           Select your room type
         </h2>
+        {/* select */}
         <StyledSelect>{repeatRoomCondition()}</StyledSelect>
+        {/* submit */}
         <Btn
           onClick={onClick}
           width="12em"
           height="2.3em"
-          item="search"
+          item="Search"
           fontSize="1.5em"
           borderRadius={"20px"}
         />
+        {/* bottom */}
         <BottomSection>
           <LogoImg />
         </BottomSection>

@@ -27,15 +27,20 @@ const HeaderSection = styled.section`
 `;
 const PrintSection = styled.section`
   width: 100%;
+  margin-bottom: 3%;
 `;
 const PaginationSection = styled.section`
-  width: 100%;
-  display: flex;
-  gap: 5%;
-  margin-bottom: 3%;
+  width: 100vw;
+  height: 45vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3%;
+  margin-bottom: 5%;
 `;
 
 const CenterSection = styled.section`
+  width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +52,6 @@ const dummyData = [
   "18-279-1",
   "18-235-1",
   "20-498-1",
-
   "18-235-1",
   "130-124-1",
   "18-279-1",
@@ -75,11 +79,10 @@ const SelectPage = ({ dataList, handleResultData }) => {
   //method
   const handleHome = () => {
     //홈으로 돌아가면 localStorage 비우기
-    localStorage.clear();
     navigator("/");
   };
 
-  const onClick = () => {
+  const handleAddType = () => {
     navigator(-1);
   };
 
@@ -107,7 +110,7 @@ const SelectPage = ({ dataList, handleResultData }) => {
           </CenterSection>
           <CenterSection>
             <Pagination
-              total={dummyData.length / 4}
+              total={parseInt(dummyData.length / 4) + 1}
               onChange={setPage}
               page={page}
               initialPage={1}
@@ -117,7 +120,7 @@ const SelectPage = ({ dataList, handleResultData }) => {
           </CenterSection>
         </PrintSection>
         <Btn
-          onClick={onClick}
+          onClick={handleAddType}
           width="8em"
           height="2.3em"
           item="+Add Type"
