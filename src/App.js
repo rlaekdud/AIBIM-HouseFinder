@@ -45,6 +45,7 @@ function App() {
               element={
                 <SelectPage
                   dataList={dataList}
+                  handleDataList={setDataList}
                   handleResultData={setResultData}
                 />
               }

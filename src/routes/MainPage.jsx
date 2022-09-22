@@ -9,7 +9,6 @@ import LogoImg from "../components/LogoImg";
 import RoomCondition from "../components/RoomCondition/RoomCondition";
 import Btn from "../components/Btn";
 import { engDataSet, korDataSet } from "../components/dataSet";
-import { useEffect } from "react";
 
 //styled-component
 
@@ -109,6 +108,7 @@ const MainPage = ({ dataList, handleDataList }) => {
         it.className = "";
         it.roomRelation = "";
       });
+      return data;
     });
     navigator("/");
   };
@@ -180,8 +180,14 @@ const MainPage = ({ dataList, handleDataList }) => {
           <BtnSection>
             <Btn
               onClick={() => {
+                setData(() => {
+                  data.map((it) => {
+                    it.className = "";
+                    it.roomRelation = "";
+                  });
+                  return data;
+                });
                 setDataSet(true);
-                setData(defaultData);
               }}
               width="5em"
               height="2.5em"
@@ -191,8 +197,14 @@ const MainPage = ({ dataList, handleDataList }) => {
             />
             <Btn
               onClick={() => {
+                setData(() => {
+                  data.map((it) => {
+                    it.className = "";
+                    it.roomRelation = "";
+                  });
+                  return data;
+                });
                 setDataSet(false);
-                setData(defaultData);
               }}
               width="5em"
               height="2.5em"

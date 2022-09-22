@@ -68,11 +68,7 @@ const dummyData = [
   "124-616-1",
 ];
 
-const SelectPage = ({ dataList, handleResultData }) => {
-  // useEffect(() => {
-  //   // AI 모델로 파일 넘버 데이터 받아오기
-  // }, []);
-
+const SelectPage = ({ dataList, handleDataList, handleResultData }) => {
   const navigator = useNavigate();
   const [page, setPage] = useState(1);
 
@@ -83,6 +79,8 @@ const SelectPage = ({ dataList, handleResultData }) => {
   };
 
   const handleAddType = () => {
+    //dataList 초기화
+    handleDataList([]);
     navigator(-1);
   };
 
