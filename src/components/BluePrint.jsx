@@ -18,7 +18,7 @@ const StyledBluePrint = styled.div`
 `;
 
 const StyledSpan = styled.span`
-  font-size: 1.8em;
+  font-size: 1.6em;
   font-weight: bold;
   display: flex;
   justify-content: center;

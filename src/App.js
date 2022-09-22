@@ -5,10 +5,10 @@ import { GlobalStyle } from "./GlobalStyles.js";
 import { MantineProvider } from "@mantine/core";
 
 //Router
-import LandingPage from "./routes/LandingPage";
-import MainPage from "./routes/MainPage";
-import SelectPage from "./routes/SelectPage";
-import ResultPage from "./routes/ResultPage";
+import LandingPage from "./page/LandingPage";
+import MainPage from "./page/MainPage";
+import SelectPage from "./page/SelectPage";
+import ResultPage from "./page/ResultPage";
 
 const Wrapper = styled.div`
   width: 99vw;

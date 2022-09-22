@@ -35,7 +35,7 @@ const PaginationSection = styled.section`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3%;
-  margin-bottom: 5%;
+  margin-bottom: 7%;
 `;
 
 const CenterSection = styled.section`
@@ -119,7 +119,7 @@ const SelectPage = ({ dataList, handleDataList, handleResultData }) => {
         </PrintSection>
         <Btn
           onClick={handleAddType}
-          width="8em"
+          width="9em"
           height="2.3em"
           item="+Add Type"
           fontSize="1.5em"
