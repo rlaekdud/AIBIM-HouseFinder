@@ -46,28 +46,6 @@ const CenterSection = styled.section`
   align-items: center;
 `;
 
-const dummyData = [
-  "20-498-1",
-  "18-235-1",
-  "18-279-1",
-  "18-235-1",
-  "20-498-1",
-  "18-235-1",
-  "130-124-1",
-  "18-279-1",
-  "130-124-1",
-  "18-235-1",
-  "124-616-1",
-  "18-279-1",
-  "124-616-1",
-  "18-279-1",
-  "20-498-1",
-  "130-124-1",
-  "20-573-1",
-  "124-616-1",
-  "124-616-1",
-];
-
 const SelectPage = ({
   dataList,
   handleReset,
@@ -107,14 +85,18 @@ const SelectPage = ({
               {/* dataList 출력 */}
               {dataList
                 .slice((page - 1) * 4, (page - 1) * 4 + 4)
-                .map((item) => (
-                  <BluePrint item={item} onClick={handleResult} />
+                .map((item, idx) => (
+                  <BluePrint item={item} index={idx} onClick={handleResult} />
                 ))}
             </PaginationSection>
           </CenterSection>
           <CenterSection>
             <Pagination
-              total={parseInt(dummyData.length / 4) + 1}
+              total={
+                dataList.length % 4 == 0
+                  ? dataList.length / 4
+                  : parseInt(dataList.length / 4) + 1
+              }
               onChange={setPage}
               page={page}
               initialPage={1}

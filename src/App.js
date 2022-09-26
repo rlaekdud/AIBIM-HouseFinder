@@ -56,7 +56,7 @@ function App() {
     item = item.replaceAll("다용도실", 6);
     item = item.replaceAll("계단실", 7);
     item = item.replaceAll("복도", 8);
-    item = item.replaceAll("펜트리실", 9);
+    item = item.replaceAll("팬트리실", 9);
     item = item.replaceAll("세탁실", 10);
     item = item.replaceAll("붙박이장", 11);
     item = item.replaceAll("차고지", 19);
