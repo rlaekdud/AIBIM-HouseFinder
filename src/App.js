@@ -27,6 +27,8 @@ function App() {
 
   // kor or eng
   const [dataSet, setDataSet] = useState(true);
+  //loading
+  const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   console.log(dataList);
@@ -84,6 +86,7 @@ function App() {
   };
 
   const handleSubmit = async (items) => {
+    setLoading(true);
     const transResult = [];
 
     // items kor, 영문 판단
@@ -101,6 +104,7 @@ function App() {
     const responseData = await request(transResult);
     // console.log(responseData.data);
     setDataList(responseData.data);
+    setLoading(false);
   };
 
   return (
@@ -137,6 +141,7 @@ function App() {
                   handleReset={handleReset}
                   handleDataList={setDataList}
                   handleResultData={setResultData}
+                  loading={loading}
                 />
               }
             />

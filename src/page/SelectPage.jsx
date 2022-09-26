@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // components
-
 import BluePrint from "../components/BluePrint";
 import Btn from "../components/Btn";
 import Header from "../components/Header";
 import { Pagination } from "@mantine/core";
+import Loading from "../components/Loading";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -51,6 +51,7 @@ const SelectPage = ({
   handleReset,
   handleDataList,
   handleResultData,
+  loading,
 }) => {
   const navigator = useNavigate();
   const [page, setPage] = useState(1);
@@ -81,6 +82,7 @@ const SelectPage = ({
         </HeaderSection>
         <PrintSection>
           <CenterSection>
+            {loading ? <Loading /> : null}
             <PaginationSection>
               {/* dataList 출력 */}
               {dataList

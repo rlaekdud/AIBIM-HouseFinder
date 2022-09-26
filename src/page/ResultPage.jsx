@@ -82,8 +82,6 @@ const BottomSection = styled.div`
   justify-content: space-between;
 `;
 
-const dummyData = ["18-235-1", "18-235-1"];
-
 const ResultPage = ({ resultData, language }) => {
   const navigator = useNavigate();
 
