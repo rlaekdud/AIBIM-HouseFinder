@@ -52,79 +52,38 @@ const BottomSection = styled.section`
   align-items: flex-end;
 `;
 
-// const BottomSection = styled.section`
-//   padding: 1em;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: flex-end;
-// `;
-
-const defaultData = [
-  {
-    id: 0,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 1,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 2,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 3,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 4,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 5,
-    className: "",
-    roomRelation: "",
-  },
-];
-
-const MainPage = ({ dataList, handleDataList }) => {
+const MainPage = ({
+  dataSet,
+  setDataSet,
+  handleReset,
+  data,
+  setData,
+  handleSubmit,
+}) => {
   const navigator = useNavigate();
-
-  // className에 따른 RoomRelation
-  const [dataSet, setDataSet] = useState(true);
-  // 임시 선택란 0 ~ 6 번까지 데이터 저장
-  const [data, setData] = useState(defaultData);
-
   // method
   const handleHome = () => {
-    handleDataList();
-    setData(() => {
-      data.map((it) => {
-        it.className = "";
-        it.roomRelation = "";
-      });
-      return data;
-    });
+    setDataSet(true);
+    handleReset();
     navigator("/");
   };
 
   const onClick = () => {
     // 다음 페이지로 route
-    // 해당 state로 관리되는 정보 넘겨주기 -> how ???
+    // 해당 state로 관리되는 정보 넘겨주기
+    //submitData -> request 보낼 데이터 쌍
     const submitData = data.filter((it) => it.roomRelation !== "");
     if (submitData.length > 0) {
-      console.log(submitData);
+      // roomRelation만 모아서 넘겨주기
+      const roomRelations = [];
+      submitData.map((item) => {
+        roomRelations.push(item.roomRelation);
+      });
+      handleSubmit(roomRelations);
       navigator("/select");
     } else {
       alert("데이터를 선택해 주세요");
     }
-    // 최종 데이터 저장 localStorage에 저장
-    handleDataList(submitData);
   };
 
   // data 중 params 에 해당하는 index data 변경

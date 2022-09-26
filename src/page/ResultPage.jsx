@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -59,10 +59,10 @@ const ImgDiv = styled.div`
   background-position: center;
 `;
 const BtnSection = styled.div`
-  width: 18%;
   margin-top: 2%;
   display: flex;
   justify-content: space-between;
+  gap: 10%;
 `;
 
 const OtherFloorSection = styled.div`
@@ -82,17 +82,15 @@ const BottomSection = styled.div`
   justify-content: space-between;
 `;
 
-const dummyData = ["18-235-1", "18-235-1", "18-235-1"];
+const dummyData = ["18-235-1", "18-235-1"];
 
 const ResultPage = ({ resultData }) => {
   const navigator = useNavigate();
 
-  // useEffect(() => {
-  //   const result = require("child_process").spawn("py", ["test.py"]);
-  //   result.stdout.on("data", function (data) {
-  //     console.log(data.toString());
-  //   });
-  // }, []);
+  const [floorPlan, setFloorPlan] = useState();
+  const [diagram, setDiagram] = useState();
+  const [otherFloor, setOtherFloor] = useState();
+
   return (
     <Wrapper>
       <Section>

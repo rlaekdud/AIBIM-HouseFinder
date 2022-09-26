@@ -294,3 +294,36 @@ export const engDataSet = {
     "Pantry room-Foyer",
   ],
 };
+
+export const defaultDataSet = [
+  {
+    id: 0,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 1,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 2,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 3,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 4,
+    className: "",
+    roomRelation: "",
+  },
+  {
+    id: 5,
+    className: "",
+    roomRelation: "",
+  },
+];

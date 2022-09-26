@@ -68,13 +68,18 @@ const dummyData = [
   "124-616-1",
 ];
 
-const SelectPage = ({ dataList, handleDataList, handleResultData }) => {
+const SelectPage = ({
+  handleReset,
+  handleDataList,
+  handleResultData,
+  dataList,
+}) => {
   const navigator = useNavigate();
   const [page, setPage] = useState(1);
 
   //method
   const handleHome = () => {
-    //홈으로 돌아가면 localStorage 비우기
+    handleReset();
     navigator("/");
   };
 
@@ -99,6 +104,7 @@ const SelectPage = ({ dataList, handleDataList, handleResultData }) => {
         <PrintSection>
           <CenterSection>
             <PaginationSection>
+              {/* dataList 출력 */}
               {dummyData
                 .slice((page - 1) * 4, (page - 1) * 4 + 4)
                 .map((item) => (
