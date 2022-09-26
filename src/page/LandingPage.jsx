@@ -26,7 +26,7 @@ const BottomSection = styled.section`
   align-items: flex-end;
 `;
 
-const LandingPage = () => {
+const LandingPage = ({ handleReset }) => {
   const navigate = useNavigate();
   return (
     <Wrapper>
@@ -47,6 +47,7 @@ const LandingPage = () => {
               fontSize="2em"
               borderRadius={"20px"}
               onClick={() => {
+                handleReset();
                 navigate("/main");
               }}
             />

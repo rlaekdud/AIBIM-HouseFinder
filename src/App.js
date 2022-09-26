@@ -118,8 +118,11 @@ function App() {
         <GlobalStyle />
         <Router>
           <Routes>
-            <Route index element={<LandingPage />} />
-            <Route path="/" element={<LandingPage />} />
+            <Route index element={<LandingPage handleReset={handleReset} />} />
+            <Route
+              path="/"
+              element={<LandingPage handleReset={handleReset} />}
+            />
             <Route
               path="/main"
               element={
