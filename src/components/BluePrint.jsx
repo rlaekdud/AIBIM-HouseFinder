@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -28,13 +29,13 @@ const StyledSpan = styled.span`
 const BluePrint = ({ item, onClick }) => {
   return (
     <Wrapper>
-      <StyledSpan>{item}</StyledSpan>
+      <StyledSpan>{item.floor_name}</StyledSpan>
       <StyledBluePrint
         onClick={() => onClick(item)}
-        backgroundImg={`url(${require(`/Users/LEESEUNGYEOL/Desktop/AIBIM-HouseFinder/src/Img/${item}.png`)})`}
+        backgroundImg={`url("${item.floor_src}")`}
       />
     </Wrapper>
   );
 };
 
-export default BluePrint;
+export default React.memo(BluePrint);

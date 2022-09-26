@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -69,10 +69,10 @@ const dummyData = [
 ];
 
 const SelectPage = ({
+  dataList,
   handleReset,
   handleDataList,
   handleResultData,
-  dataList,
 }) => {
   const navigator = useNavigate();
   const [page, setPage] = useState(1);
@@ -105,7 +105,7 @@ const SelectPage = ({
           <CenterSection>
             <PaginationSection>
               {/* dataList 출력 */}
-              {dummyData
+              {dataList
                 .slice((page - 1) * 4, (page - 1) * 4 + 4)
                 .map((item) => (
                   <BluePrint item={item} onClick={handleResult} />
@@ -136,4 +136,4 @@ const SelectPage = ({
     </Wrapper>
   );
 };
-export default SelectPage;
+export default React.memo(SelectPage);

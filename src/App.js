@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import { GlobalStyle } from "./GlobalStyles.js";
@@ -21,24 +21,6 @@ function App() {
   // 임시 선택란 0 ~ 6 번까지 데이터 저장
   const [data, setData] = useState(defaultDataSet);
   // 랜더링 될 20개 dataList -> by surver data render 받음, 객체배열 형태
-  // [
-  //   {
-  //     floor_name: "",
-  //     floor_src: "",
-  //     bubblemap_kor_src: "",
-  //     bubblemap_eng_src: "",
-  //     levels: [
-  //       {
-  //         floor_name: "",
-  //         floor_src: "",
-  //       },
-  //       {
-  //         floor_name: "",
-  //         floor_src: "",
-  //       },
-  //     ],
-  //   },
-  // ];
   const [dataList, setDataList] = useState([]);
   // 최종 데이터 도면 name, string 으로 저장, 객체로 저장할 것
   const [resultData, setResultData] = useState({});
@@ -46,9 +28,15 @@ function App() {
   // kor or eng
   const [dataSet, setDataSet] = useState(true);
 
+  // useEffect(() => {
+  //   console.log(dataList);
+  // }, [dataList]);
+
   // method
   const handleReset = () => {
-    setDataList();
+    setDataList([]);
+    setResultData({});
+    setDataSet(true);
     setData(() => {
       data.map((it) => {
         it.className = "";
@@ -95,7 +83,7 @@ function App() {
     return item;
   };
 
-  const handleSubmit = (items) => {
+  const handleSubmit = async (items) => {
     const transResult = [];
 
     // items kor, 영문 판단
@@ -110,8 +98,9 @@ function App() {
       });
     }
     //console.log(transResult);
-    //const responseData = request(transResult);
-    // setDataList(responseData);
+    const responseData = await request(transResult);
+    // console.log(responseData.data);
+    setDataList(responseData.data);
   };
 
   return (
@@ -153,7 +142,9 @@ function App() {
             />
             <Route
               path="/result"
-              element={<ResultPage resultData={resultData || "18-235-1"} />}
+              element={
+                <ResultPage language={dataSet} resultData={resultData} />
+              }
             />
           </Routes>
         </Router>
@@ -162,4 +153,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

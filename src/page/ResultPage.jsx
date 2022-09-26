@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -84,12 +84,12 @@ const BottomSection = styled.div`
 
 const dummyData = ["18-235-1", "18-235-1"];
 
-const ResultPage = ({ resultData }) => {
+const ResultPage = ({ resultData, language }) => {
   const navigator = useNavigate();
 
-  const [floorPlan, setFloorPlan] = useState();
-  const [diagram, setDiagram] = useState();
-  const [otherFloor, setOtherFloor] = useState();
+  // const [floorPlan, setFloorPlan] = useState();
+  // const [diagram, setDiagram] = useState();
+  // const [otherFloor, setOtherFloor] = useState();
 
   return (
     <Wrapper>
@@ -104,7 +104,7 @@ const ResultPage = ({ resultData }) => {
             >
               House Drawing
             </Span>
-            <Span style={{ fontSize: "1.7em" }}>{resultData}</Span>
+            <Span style={{ fontSize: "1.7em" }}>{resultData.floor_name}</Span>
           </div>
           <BtnSection>
             <Btn
@@ -133,9 +133,7 @@ const ResultPage = ({ resultData }) => {
             <CenterSection>
               <SmallSpan color={"#002060"}>Floor Plan</SmallSpan>
             </CenterSection>
-            <ImgDiv
-              backgroundImg={`url(${require(`/Users/LEESEUNGYEOL/Desktop/AIBIM-HouseFinder/src/Img/${resultData}.png`)})`}
-            ></ImgDiv>
+            <ImgDiv backgroundImg={`url("${resultData.floor_src}")`}></ImgDiv>
           </div>
           <div style={{ borderLeft: "2px solid gray", height: "70vh" }}></div>
           <div
@@ -147,17 +145,19 @@ const ResultPage = ({ resultData }) => {
               <SmallSpan color={"#002060"}>Space Diagram</SmallSpan>
             </CenterSection>
             <ImgDiv
-              backgroundImg={`url(${require(`/Users/LEESEUNGYEOL/Desktop/AIBIM-HouseFinder/src/Img/${resultData}.jpg`)})`}
+              backgroundImg={
+                language
+                  ? `url("${resultData.bubblemap_kor_src}")`
+                  : `url("${resultData.bubblemap_eng_src}")`
+              }
             ></ImgDiv>
           </div>
         </ImgSection>
         <BottomSection>
           <OtherFloorSection>
-            {dummyData.map((it) => {
+            {resultData.levels.map((item) => {
               return (
-                <ImgDiv
-                  backgroundImg={`url(${require(`/Users/LEESEUNGYEOL/Desktop/AIBIM-HouseFinder/src/Img/${it}.png`)})`}
-                ></ImgDiv>
+                <ImgDiv backgroundImg={`url("${item.floor_src}")`}></ImgDiv>
               );
             })}
           </OtherFloorSection>
