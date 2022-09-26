@@ -29,7 +29,6 @@ const RoomCondition = ({
   // className이 선택한 key에 해당하는 values 값 반환
   const selectCondition = (e) => {
     handleClassName(e);
-    handleRoomRelation(e);
     setCondition(data[className.find((it) => it === e)]);
   };
 
