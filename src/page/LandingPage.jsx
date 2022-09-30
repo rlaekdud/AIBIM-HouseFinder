@@ -47,6 +47,9 @@ const LandingPage = ({ handleReset }) => {
               fontSize="2em"
               borderRadius={"20px"}
               onClick={() => {
+                alert(
+                  "시범 운행중입니다.\n개선사항이 있으시면 gpwls3143@gmail.com로 연락주세요."
+                );
                 handleReset();
                 navigate("/main");
               }}

@@ -158,7 +158,7 @@ export const engDataSet = {
     "Living room-Garage",
     "Living room-Utility room",
   ],
-  Kichen: [
+  Kitchen: [
     "Dining room<->Kitchen-Living room",
     "Kitchen<->Dining room",
     "Kitchen-Pantry room",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,6 +8,7 @@ import Btn from "../components/Btn";
 import Header from "../components/Header";
 import { Pagination } from "@mantine/core";
 import Loading from "../components/Loading";
+import DataEmpty from "../components/DataEmpty";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ const PrintSection = styled.section`
   margin-bottom: 3%;
 `;
 const PaginationSection = styled.section`
-  width: 100vw;
+  width: 100%;
   height: 45vh;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -81,21 +82,27 @@ const SelectPage = ({
           <Header onClick={handleHome} />
         </HeaderSection>
         <PrintSection>
-          <CenterSection>
-            {loading ? <Loading /> : null}
-            <PaginationSection>
-              {/* dataList 출력 */}
-              {dataList
-                .slice((page - 1) * 4, (page - 1) * 4 + 4)
-                .map((item, idx) => (
-                  <BluePrint item={item} index={idx} onClick={handleResult} />
-                ))}
-            </PaginationSection>
-          </CenterSection>
+          {loading ? <Loading /> : null}
+          {loading ? (
+            <div style={{ width: "100%", height: "45vh" }}></div>
+          ) : dataList.length === 0 ? (
+            <DataEmpty />
+          ) : (
+            <CenterSection>
+              <PaginationSection>
+                {/* dataList 출력 */}
+                {dataList
+                  .slice((page - 1) * 4, (page - 1) * 4 + 4)
+                  .map((item, idx) => (
+                    <BluePrint item={item} index={idx} onClick={handleResult} />
+                  ))}
+              </PaginationSection>
+            </CenterSection>
+          )}
           <CenterSection>
             <Pagination
               total={
-                dataList.length % 4 == 0
+                dataList.length % 4 === 0
                   ? dataList.length / 4
                   : parseInt(dataList.length / 4) + 1
               }

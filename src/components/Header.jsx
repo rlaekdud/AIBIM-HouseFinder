@@ -12,8 +12,6 @@ const Wrapper = styled.div`
 const LogoName = styled.div`
   padding: 0.02vw 0 0 1vw;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 3rem;
   font-weight: bolder;
 `;

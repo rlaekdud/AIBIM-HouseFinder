@@ -69,7 +69,7 @@ function App() {
   const engToNum = (item) => {
     item = item.replaceAll("Hall", 0);
     item = item.replaceAll("Living room", 1);
-    item = item.replaceAll("Kichen", 3);
+    item = item.replaceAll("Kitchen", 3);
     item = item.replaceAll("Bedroom", 2);
     item = item.replaceAll("Bathroom", 4);
     item = item.replaceAll("Dressing room", 5);

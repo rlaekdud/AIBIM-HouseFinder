@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Modal } from "@mantine/core";
 
 //components
 import Btn from "../components/Btn";
@@ -57,6 +58,22 @@ const ImgDiv = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid 
+  }
+`;
+
+const ModalImgDiv = styled.div`
+  width: 100%;
+  height: 80vh;
+  border: none;
+  background-image: ${(props) => props.backgroundImg};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 const BtnSection = styled.div`
   margin-top: 2%;
@@ -84,14 +101,29 @@ const BottomSection = styled.div`
 
 const ResultPage = ({ resultData, language }) => {
   const navigator = useNavigate();
+  //state
+  //modal state
+  const [opened, setOpened] = useState(false);
+  const [imgUrl, setImgUrl] = useState("");
 
-  // const [floorPlan, setFloorPlan] = useState();
-  // const [diagram, setDiagram] = useState();
-  // const [otherFloor, setOtherFloor] = useState();
+  const handleZoom = (img) => {
+    setOpened(true);
+    setImgUrl(img);
+  };
 
   return (
     <Wrapper>
       <Section>
+        <Modal
+          opened={opened}
+          onClose={() => {
+            setOpened(false);
+          }}
+          centered
+          size="60%"
+        >
+          <ModalImgDiv backgroundImg={imgUrl}></ModalImgDiv>
+        </Modal>
         <HeaderSection>
           <div style={{ display: "flex", flexDirection: "column", gap: "40%" }}>
             <Span
@@ -131,7 +163,12 @@ const ResultPage = ({ resultData, language }) => {
             <CenterSection>
               <SmallSpan color={"#002060"}>Floor Plan</SmallSpan>
             </CenterSection>
-            <ImgDiv backgroundImg={`url("${resultData.floor_src}")`}></ImgDiv>
+            <ImgDiv
+              backgroundImg={`url("${resultData.floor_src}")`}
+              onClick={() => {
+                handleZoom(`url("${resultData.floor_src}")`);
+              }}
+            ></ImgDiv>
           </div>
           <div style={{ borderLeft: "2px solid gray", height: "70vh" }}></div>
           <div
@@ -148,6 +185,11 @@ const ResultPage = ({ resultData, language }) => {
                   ? `url("${resultData.bubblemap_kor_src}")`
                   : `url("${resultData.bubblemap_eng_src}")`
               }
+              onClick={() => {
+                language
+                  ? handleZoom(`url("${resultData.bubblemap_kor_src}")`)
+                  : handleZoom(`url("${resultData.bubblemap_eng_src}")`);
+              }}
             ></ImgDiv>
           </div>
         </ImgSection>
@@ -155,7 +197,12 @@ const ResultPage = ({ resultData, language }) => {
           <OtherFloorSection>
             {resultData.levels.map((item) => {
               return (
-                <ImgDiv backgroundImg={`url("${item.floor_src}")`}></ImgDiv>
+                <ImgDiv
+                  backgroundImg={`url("${item.floor_src}")`}
+                  onClick={() => {
+                    handleZoom(`url("${item.floor_src}")`);
+                  }}
+                ></ImgDiv>
               );
             })}
           </OtherFloorSection>
