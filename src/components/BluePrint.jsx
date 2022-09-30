@@ -8,31 +8,39 @@ const Wrapper = styled.div`
 
 const StyledBluePrint = styled.div`
   width: 100%;
-  height: 100%;
-  border: 2px solid black;
-  margin-bottom: 3%;
+  height: 90%;
+  border: 2px solid;
+  border-color: ${(props) => props.color};
   background-image: ${(props) => props.backgroundImg};
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+
+  color: ${(props) => props.color};
 `;
 
 const StyledSpan = styled.span`
+  height: 10%;
   font-size: 1.6em;
   font-weight: bold;
   display: flex;
   justify-content: center;
-  margin-bottom: 2%;
+
+  color: ${(props) => props.color};
 `;
 
-const BluePrint = ({ item, onClick }) => {
+const BluePrint = ({ item, onClick, color }) => {
   return (
     <Wrapper>
-      <StyledSpan>{item.floor_name}</StyledSpan>
+      <StyledSpan color={color}>{item.floor_name}</StyledSpan>
       <StyledBluePrint
         onClick={() => onClick(item)}
         backgroundImg={`url("${item.floor_src}")`}
+        color={color}
       />
     </Wrapper>
   );

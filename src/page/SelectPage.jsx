@@ -32,11 +32,12 @@ const PrintSection = styled.section`
 `;
 const PaginationSection = styled.section`
   width: 100%;
-  height: 45vh;
+  height: 47vh;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 3%;
-  margin-bottom: 7%;
+
+  grid-gap: 3%;
+  margin-bottom: 3%;
 `;
 
 const CenterSection = styled.section`
@@ -74,6 +75,42 @@ const SelectPage = ({
     handleResultData(item);
     navigator("/result");
   };
+  const BluePrintIter = (dataList) => {
+    const arr = [];
+    for (let i = 0; i < dataList.length; i += 4) {
+      arr.push(
+        <PaginationSection>
+          <BluePrint
+            item={dataList[i]}
+            onClick={handleResult}
+            color={"#148582"}
+          />
+          <BluePrint
+            item={dataList[i + 1]}
+            onClick={handleResult}
+            color={"#148582"}
+          />
+          <BluePrint
+            item={dataList[i + 2]}
+            onClick={handleResult}
+            color={"#CDA715"}
+          />
+          <BluePrint
+            item={dataList[i + 3]}
+            onClick={handleResult}
+            color={"#CDA715"}
+          />
+        </PaginationSection>
+      );
+    }
+    return arr;
+  };
+
+  // {dataList
+  //   .slice((page - 1) * 4, (page - 1) * 4 + 4)
+  //   .map((item, idx) => (
+  //     <BluePrint item={item} index={idx} onClick={handleResult} />
+  //   ))}
 
   return (
     <Wrapper>
@@ -89,14 +126,10 @@ const SelectPage = ({
             <DataEmpty />
           ) : (
             <CenterSection>
-              <PaginationSection>
-                {/* dataList 출력 */}
-                {dataList
-                  .slice((page - 1) * 4, (page - 1) * 4 + 4)
-                  .map((item, idx) => (
-                    <BluePrint item={item} index={idx} onClick={handleResult} />
-                  ))}
-              </PaginationSection>
+              {/* dataList 출력 */}
+              {BluePrintIter(
+                dataList.slice((page - 1) * 4, (page - 1) * 4 + 4)
+              )}
             </CenterSection>
           )}
           <CenterSection>
