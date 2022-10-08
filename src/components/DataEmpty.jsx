@@ -5,6 +5,7 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const Wrapper = styled.div`
   width: 100%;
+  
   height: 45vh;
   display: flex;
   flex-direction: column;

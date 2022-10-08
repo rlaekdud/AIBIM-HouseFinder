@@ -29,7 +29,7 @@ const HeaderSection = styled.section`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8%;
+  margin-bottom: 3%;
 `;
 
 const BtnSection = styled.section`
@@ -72,6 +72,7 @@ const MainPage = ({
     // 다음 페이지로 route
     // 해당 state로 관리되는 정보 넘겨주기
     //submitData -> request 보낼 데이터 쌍
+
     const submitData = data.filter((it) => it.roomRelation !== "");
     if (submitData.length > 0) {
       // roomRelation만 모아서 넘겨주기
@@ -107,6 +108,13 @@ const MainPage = ({
     }
   };
 
+  const handleResetOneRoomRelation = (e, params) => {
+    const copyArray = [...data];
+    copyArray[params].className = "";
+    copyArray[params].roomRelation = "";
+    setData(copyArray);
+  };
+
   // 다중 요소 넘겨주는 컴포넌트
   function repeatRoomCondition() {
     const arr = [];
@@ -122,6 +130,10 @@ const MainPage = ({
           // roomRelation 선택
           handleRoomRelation={(e) => {
             handleRoomRelation(e, i);
+          }}
+          //하나의 roomRelation 초기화
+          handleResetOneRoomRelation={(e) => {
+            handleResetOneRoomRelation(e, i);
           }}
         />
       );
@@ -173,7 +185,7 @@ const MainPage = ({
             />
           </BtnSection>
         </HeaderSection>
-        <h2 style={{ color: "#002060", marginBottom: "3%" }}>
+        <h2 style={{ color: "#002060", marginBottom: "7%" }}>
           Select your room type
         </h2>
         {/* select */}
