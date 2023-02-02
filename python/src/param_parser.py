@@ -12,12 +12,13 @@ def parameter_parser():
 
     parser.add_argument("--training-graphs",
                         nargs="?",
-                        default="/Users/LEESEUNGYEOL/Desktop/Test1",
+                        # default="/Users/LEESEUNGYEOL/Desktop/Test1",
+                        default="../files/JSONFiles",
 	                help="Folder with training graph pair jsons.")
 
     parser.add_argument("--testing-graphs",
                         nargs="?",
-                        default="/Users/LEESEUNGYEOL/Desktop/Test1",
+                        default="../files/JSONFiles",
 	                help="Folder with testing graph pair jsons.")
 
     parser.add_argument("--epochs",
@@ -93,7 +94,7 @@ def parameter_parser():
 
     parser.add_argument("--load-path",
                         type=str,
-                        default='./saved_student_models',
+                        default='../saved_student_models',
                         help="Load a pretrained model")
 
     return parser.parse_args()

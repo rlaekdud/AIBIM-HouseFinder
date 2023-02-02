@@ -14,4 +14,6 @@ yarn-error.log*
 .npm/
 Footer
 src/Img/
-
+python/files/*
+python/__pycache__
+python/src/__pycache__

@@ -4,6 +4,7 @@
 import pandas as pd
 import glob
 import numpy as np
+import time
 from functools import reduce
 
 # CSV_PATH="D:/SimGNNDATA/CSVFiles" #기존 CSV파일 Folder경로
@@ -18,8 +19,16 @@ DISCONNECTED = "discon"
 TYPE_SIX = "20_3-1"
 
 def processRequest(request):
+  start = time.time()
+  print("🚀 PROCESSING(1): making csvFiles")
   Testlist = []
   for relation in request:
+    # relation: [1-20, 1-2-3, 1-2-3-4, "1-2,1-3", "1-2,1-3,1-4", type6]
+    relation = relation.replace("-", " - ")
+    relation = relation.replace("_", " _ ")
+    relation = relation.replace(",", " , ")
+    relation = relation.split(" ")
+    
     subTest = ""
     
     # TYPE6
@@ -66,6 +75,7 @@ def processRequest(request):
     
     Testlist.append(subTest)
   # for loop done
+  print(f"⏰ query.py: {time.time() - start}")
   return reduce(np.intersect1d, Testlist)
 
 # TYPE1: 라벨1 - 인접라벨1
