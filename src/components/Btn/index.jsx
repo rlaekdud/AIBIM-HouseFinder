@@ -15,7 +15,7 @@ const StyledBtn = styled.button`
   align-items: center;
   justify-content: center;
   font-size: ${(props) => (props.fontSize ? props.fontSize : "1.3rem")};
-  border: 1px solid white;
+  border: ${(props) => `1px solid ${props.backgroundColor}`};
   box-shadow: 0.8rem 0.5rem 1.4rem #bec5d0, -0.3rem -0.4rem 0.8rem #fbfbfb;
   user-select: none;
 

@@ -13,7 +13,12 @@ yarn-error.log*
 /.changelog
 .npm/
 Footer
+<<<<<<< HEAD
 src/Img/
 python/files/*
 python/__pycache__
 python/src/__pycache__
+=======
+
+
+>>>>>>> ec87ad35dd289c73b07dc1507be46cb92ebd94cd

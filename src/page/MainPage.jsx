@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import LogoImg from "../components/LogoImg";
 import RoomCondition from "../components/RoomCondition/RoomCondition";
 import Btn from "../components/Btn";
-import { korDataSet } from "../components/dataSet";
+import { engDataSet, korDataSet } from "../components/dataSet";
 
 //styled-component
 
@@ -29,13 +29,12 @@ const HeaderSection = styled.section`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8%;
+  margin-bottom: 3%;
 `;
 
 const BtnSection = styled.section`
   display: flex;
   gap: 1em;
-  margin-top: 2em;
 `;
 
 const StyledSelect = styled.div`
@@ -48,101 +47,72 @@ const StyledSelect = styled.div`
 `;
 
 const BottomSection = styled.section`
-  width: 100%;
   display: flex;
-  margin-left: 5%;
   justify-content: flex-end;
   align-items: flex-end;
 `;
 
-const defaultData = [
-  {
-    id: 0,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 1,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 2,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 3,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 4,
-    className: "",
-    roomRelation: "",
-  },
-  {
-    id: 5,
-    className: "",
-    roomRelation: "",
-  },
-];
-
-const MainPage = ({ handleDataList }) => {
+const MainPage = ({
+  dataSet,
+  setDataSet,
+  handleReset,
+  data,
+  setData,
+  handleSubmit,
+}) => {
   const navigator = useNavigate();
-
-  // state 저장된 값이 있다면 초기 값 local storage에 저장
-  const [result, setResult] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = window.localStorage.getItem("roomType");
-
-      if (saved !== null) {
-        // local에 저장된 초기값이 있다면
-        return JSON.parse(saved);
-      } else {
-        return defaultData;
-      }
-    }
-  });
-
   // method
   const handleHome = () => {
-    //홈으로 돌아가면 localStorage 비우기
-    localStorage.clear();
-    setResult();
+    setDataSet(true);
+    handleReset();
     navigator("/");
   };
 
   const onClick = () => {
     // 다음 페이지로 route
-    // 해당 state로 관리되는 정보 넘겨주기 -> how ???
-    const submitData = result.filter((it) => it.roomRelation !== "");
+    // 해당 state로 관리되는 정보 넘겨주기
+    //submitData -> request 보낼 데이터 쌍
+
+    const submitData = data.filter((it) => it.roomRelation !== "");
     if (submitData.length > 0) {
-      alert(`${JSON.stringify(submitData)} ${submitData.length}`);
+      // roomRelation만 모아서 넘겨주기
+      const roomRelations = [];
+      submitData.map((item) => {
+        roomRelations.push(item.roomRelation);
+      });
+      handleSubmit(roomRelations);
       navigator("/select");
     } else {
       alert("데이터를 선택해 주세요");
     }
-    // 최종 데이터 저장 localStorage에 저장
-    handleDataList(JSON.stringify(submitData));
   };
 
+  // data 중 params 에 해당하는 index data 변경
   const handleClassName = (e, params) => {
-    const copyArray = [...result];
+    const copyArray = [...data];
     copyArray[params].className = e;
-    setResult(copyArray);
+    setData(copyArray);
   };
 
+  // className에 따른 RoomRelation
   const handleRoomRelation = (e, params) => {
     if (e) {
-      const copyArray = [...result];
+      const copyArray = [...data];
       copyArray[params].roomRelation = e;
-      setResult(copyArray);
+      setData(copyArray);
     } else {
-      const copyArray = [...result];
+      // error 처리
+      const copyArray = [...data];
       copyArray[params].roomRelation = "";
-      setResult(copyArray);
+      setData(copyArray);
     }
+  };
+
+  const handleResetOneRoomRelation = (e, params) => {
+    const copyArray = [...data];
+    copyArray[params].className = "";
+    copyArray[params].roomRelation = "";
+    setData(copyArray);
   };
 
   // 다중 요소 넘겨주는 컴포넌트
@@ -151,13 +121,19 @@ const MainPage = ({ handleDataList }) => {
     for (let i = 0; i < 6; i++) {
       arr.push(
         <RoomCondition
-          data={korDataSet}
-          value={result[i]}
+          data={dataSet ? korDataSet : engDataSet}
+          value={data[i]}
+          // classname 선택
           handleClassName={(e) => {
             handleClassName(e, i);
           }}
+          // roomRelation 선택
           handleRoomRelation={(e) => {
             handleRoomRelation(e, i);
+          }}
+          //하나의 roomRelation 초기화
+          handleResetOneRoomRelation={(e) => {
+            handleResetOneRoomRelation(e, i);
           }}
         />
       );
@@ -169,10 +145,21 @@ const MainPage = ({ handleDataList }) => {
     <Wrapper>
       <Section>
         <HeaderSection>
+          {/* LandingPage로 */}
           <Header onClick={handleHome} />
+          {/* 언어변경 */}
           <BtnSection>
             <Btn
-              onClick={() => {}}
+              onClick={() => {
+                setData(() => {
+                  data.map((it) => {
+                    it.className = "";
+                    it.roomRelation = "";
+                  });
+                  return data;
+                });
+                setDataSet(true);
+              }}
               width="5em"
               height="2.5em"
               item="KOR"
@@ -180,7 +167,16 @@ const MainPage = ({ handleDataList }) => {
               borderRadius={"10px"}
             />
             <Btn
-              onClick={() => {}}
+              onClick={() => {
+                setData(() => {
+                  data.map((it) => {
+                    it.className = "";
+                    it.roomRelation = "";
+                  });
+                  return data;
+                });
+                setDataSet(false);
+              }}
               width="5em"
               height="2.5em"
               item="ENG"
@@ -189,18 +185,21 @@ const MainPage = ({ handleDataList }) => {
             />
           </BtnSection>
         </HeaderSection>
-        <h2 style={{ color: "#002060", marginBottom: "3%" }}>
+        <h2 style={{ color: "#002060", marginBottom: "7%" }}>
           Select your room type
         </h2>
+        {/* select */}
         <StyledSelect>{repeatRoomCondition()}</StyledSelect>
+        {/* submit */}
         <Btn
           onClick={onClick}
           width="12em"
           height="2.3em"
-          item="search"
+          item="Search"
           fontSize="1.5em"
           borderRadius={"20px"}
         />
+        {/* bottom */}
         <BottomSection>
           <LogoImg />
         </BottomSection>

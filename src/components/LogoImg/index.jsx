@@ -5,27 +5,35 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const Section = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+// const Section = styled.section`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
 
 const LogoImg = () => {
   return (
     <Wrapper>
-      <Section>
-        <img src={require("../../Img/KNULOGO.png")} />
-      </Section>
-      <Section>
-        <img
-          src={require("../../Img/DADLLOGO.gif")}
-          style={{ paddingLeft: "3.7em" }}
-        />
-      </Section>
-      <Section>
-        <img src={require("../../Img/IPALOGO.png")} />
-      </Section>
+      <img
+        src={require("../../Img/KNULOGO.png")}
+        style={{ width: "12vw", objectFit: "contain" }}
+      />
+
+      <div
+        style={{
+          width: "13vw",
+          backgroundImage: `url(${require("../../Img/DADLLOGO.gif")})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          marginLeft: "10%",
+        }}
+      ></div>
+
+      <img
+        src={require("../../Img/IPALOGO.png")}
+        style={{ width: "12vw", objectFit: "contain" }}
+      />
     </Wrapper>
   );
 };

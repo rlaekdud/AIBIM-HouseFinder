@@ -1,57 +1,70 @@
-# About The Project
+# Getting Started with Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-We need system to calculate similarity between two house floor plans.
+## Available Scripts
 
-Here’s why:
+In the project directory, you can run:
 
-- Making House!Finder;House Floor plan Recommendation System
-- Calculate GED needs to long time. Because of it’s NP-Complete complexity.
+### `npm start`
 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
+### `npm test`
 
-# Getting Started
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run build`
 
-This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
-## ****Prerequisites****
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-- **python**==3.8
-- **pytorch** (본인 CUDA version에 맞게)
-    
-    [PyTorch](https://pytorch.org/get-started/locally/)
-    
-- **pytorch geometric**( 본인 pytorch version과 CUDA version에 맞게)
-    
-    [Installation - pytorch_geometric documentation](https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html)
-    
-- **numpy**
-- **pandas**
-- **networkx**
-- **argparse**
-- **sklearn**
-- etc) 제가 빼먹었을 수도 있는데,, 혹시나 실행했는데 ‘무슨 package?가 없습니다’ 라 뜨면 해당 package install 하면 해결될 것 입니다..!
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Execution
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-```python
-main.bat
-#if mac?
-#bash main.sh
-```
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-# If Mac?
+## Learn More
 
-You need to change **batch file** to  **bash file**.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### main.sh
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-```bash
-#!/bin/bash
-python ./src/main.py
-```
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

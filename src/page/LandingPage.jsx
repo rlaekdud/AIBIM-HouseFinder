@@ -14,19 +14,19 @@ const Wrapper = styled.div`
 `;
 const Section = styled.section`
   width: 100%;
-  height: 97%;
+  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 const BottomSection = styled.section`
-  padding: 1em;
+  padding: 3rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 `;
 
-const LandingPage = () => {
+const LandingPage = ({ handleReset }) => {
   const navigate = useNavigate();
   return (
     <Wrapper>
@@ -47,6 +47,10 @@ const LandingPage = () => {
               fontSize="2em"
               borderRadius={"20px"}
               onClick={() => {
+                alert(
+                  "시범 운행중입니다.\n개선사항이 있으시면 gpwls3143@gmail.com로 연락주세요."
+                );
+                handleReset();
                 navigate("/main");
               }}
             />
