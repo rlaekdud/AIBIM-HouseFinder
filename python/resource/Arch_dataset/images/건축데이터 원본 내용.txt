@@ -1,0 +1,6 @@
+1. 원본 이미지 -> Raw_1
+1. 원본이미지 -> Raw_2
+2. 버블이미지(층별) -> Bubble_layer
+3. 버블이미지(연결) -> Bubble_adj
+4. 디텍션이미지     -> Detected_image
+5. 공간관계정보추출(엑셀) -> Data_info

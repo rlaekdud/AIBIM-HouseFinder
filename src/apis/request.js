@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const request = async (data) => {
   return axios // axios 라고 프론트에서 ajax (비동기요청) 하는 모듈
-    .get(`http://13.209.3.167:8080`, {
+    .get(`http://43.201.14.251:8080`, {
       params: { data: JSON.stringify(data) },
     })
     .then((response) => {

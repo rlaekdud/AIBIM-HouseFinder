@@ -37,8 +37,11 @@ def main(pairNames, test_graphs):
     
 
     # model 불러오기
-    teacher_weight=torch.load(f'../saved_teacher_models/batch100_epoch200_GCN2_13_large.pth', map_location = device)
-    student_weight=torch.load(f'../saved_student_models/batch100_epoch200_GCN2_13_large.pth', map_location = device)
+    # teacher_weight=torch.load(f'../saved_teacher_models/batch100_epoch200_GCN2_13_large.pth', map_location = device)
+    # student_weight=torch.load(f'../saved_student_models/batch100_epoch200_GCN2_13_large.pth', map_location = device)
+    
+    teacher_weight=torch.load(f'../resource/pair_1/teacher/batch100_epoch200_GCN2_13_large.pth', map_location = device)
+    student_weight=torch.load(f'../resource/pair_1/student/batch100_epoch200_GCN2_13_large.pth', map_location = device)
     teacher_model.load_state_dict(teacher_weight)    
     student_model.load_state_dict(student_weight, strict=False)   
     
