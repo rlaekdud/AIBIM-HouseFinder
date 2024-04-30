@@ -43,7 +43,7 @@ def main(pairNames, test_graphs):
     teacher_weight=torch.load(f'../resource/pair_1/teacher/batch100_epoch200_GCN2_13_large.pth', map_location = device)
     student_weight=torch.load(f'../resource/pair_1/student/batch100_epoch200_GCN2_13_large.pth', map_location = device)
     teacher_model.load_state_dict(teacher_weight)    
-    student_model.load_state_dict(student_weight, strict=False)   
+    student_model.load_state_dict(student_weight, strict=False)
     
     with torch.no_grad():
         student_model.tensor_network.weight_matrix.copy_(teacher_weight['tensor_network.weight_matrix'])

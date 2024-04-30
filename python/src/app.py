@@ -18,9 +18,14 @@ def handleRequest():
       req = json.loads(request.args["data"])
       print(f'🎉 요청데이터: {req}')
       csvFiles = processRequest(req)
+      print(f'🎉 csvFiles: {csvFiles}')
       pairNames, jsonFiles = csvToJson(csvFiles)
+      print(f'🎉 pairNames: {pairNames}'
+            f'\n🎉 jsonFiles: {jsonFiles}')
       topTwentyFileNames = main(pairNames, jsonFiles) #length is fourty (top twenty + simillar floor plan)
+      print(f'🎉 topTwentyFileNames: {topTwentyFileNames}')
       data = fileNameToResponse(topTwentyFileNames)
+      print(f'🎉 data: {data}')
       return jsonify({"status": 200, "message": f'time: {time.time() - start}s', "data": data})
     except:
       print("😱 예외발생")
