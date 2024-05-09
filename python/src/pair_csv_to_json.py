@@ -7,9 +7,9 @@ import time
 # from python.query import Test
 
 # CSV_PATH='D:/SimGNNDATA/CSVFiles' #기존 CSV File Folder 경로
-CSV_PATH="../files/CSVFiles" #기존 CSV파일 Folder경로
+CSV_PATH="../resource/CSVFiles" #기존 CSV파일 Folder경로
 # JSON_PATH='D:/SimGNNDATA/Test' #새로이 저장할 Json File Folder 경로
-JSON_PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/files/JSONFiles" #새로이 저장할 Json File Folder 경로
+JSON_PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/JSONFiles" #새로이 저장할 Json File Folder 경로
 
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
