@@ -1,0 +1,5 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+2_HAL_1,8,2_LAU_1,10,0,1
+2_HAL_1,8,2_UTI_1,6,0,2
+2_UTI_1,6,2_HAL_1,8,2,0
+2_LAU_1,10,2_HAL_1,8,1,0

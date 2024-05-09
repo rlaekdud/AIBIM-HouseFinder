@@ -8,7 +8,7 @@ import time
 from functools import reduce
 
 # CSV_PATH="D:/SimGNNDATA/CSVFiles" #기존 CSV파일 Folder경로
-CSV_PATH = "../resource/CSVFiles"  # 기존 CSV파일 Folder경로
+CSV_PATH = "../resource/CSVFiles"  # CSV파일 Folder경로
 CSV_LIST = glob.glob(CSV_PATH + "/*.csv")  # CSV 파일 하나씩 경로 리스트화
 
 CONNECTED_SYMBOL = "-"
@@ -23,7 +23,6 @@ def processRequest(request):
   print("🚀 PROCESSING(1): making csvFiles")
   Testlist = []
 
-  print(request)
   for relation in request:
     # relation: [1-20, 1-2-3, 1-2-3-4, "1-2,1-3", "1-2,1-3,1-4", type6]
     relation = relation.replace("-", " - ")
@@ -68,6 +67,7 @@ def processRequest(request):
         adjLabel1 = int(relation[2])
         adjLabel2 = int(relation[6])
         subTest = processOneRelationWithTwoPair(label, adjLabel1, adjLabel2)
+
     # TYPE5
     elif len(relation) == 11:
       label = int(relation[0])

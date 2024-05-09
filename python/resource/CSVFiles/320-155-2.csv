@@ -1,0 +1,9 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+2_GAR_1,19,2_BED_1,2,1,0
+2_BED_1,2,2_GAR_1,19,0,1
+2_BED_1,2,2_HAL_1,8,0,2
+2_HAL_1,8,2_LIV_1,1,2,3
+2_HAL_1,8,2_STA_1,7,2,4
+2_HAL_1,8,2_BED_1,2,2,0
+2_LIV_1,1,2_HAL_1,8,3,2
+2_STA_1,7,2_HAL_1,8,4,2

@@ -1,0 +1,3 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+1_GAR_1,19,1_UTI_1,6,0,1
+1_UTI_1,6,1_GAR_1,19,1,0

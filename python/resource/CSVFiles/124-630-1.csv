@@ -1,0 +1,7 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+1_GAR_1,19,1_BAT_1,4,4,0
+1_BED_1,2,1_CLO_1,11,1,2
+1_BAT_1,4,1_CLO_2,11,0,3
+1_BAT_1,4,1_GAR_1,19,0,4
+1_CLO_1,11,1_BED_1,2,2,1
+1_CLO_2,11,1_BAT_1,4,3,0

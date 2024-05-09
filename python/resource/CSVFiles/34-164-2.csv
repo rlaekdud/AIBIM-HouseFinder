@@ -1,0 +1,5 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+2_STA_1,7,2_UTI_1,6,1,2
+2_UTI_1,6,2_CLO_1,11,2,0
+2_UTI_1,6,2_STA_1,7,2,1
+2_CLO_1,11,2_UTI_1,6,0,2

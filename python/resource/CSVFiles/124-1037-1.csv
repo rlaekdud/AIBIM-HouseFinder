@@ -1,0 +1,9 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+1_GAR_1,19,1_HAL_1,8,0,1
+1_GAR_1,19,1_STA_1,7,0,3
+1_GAR_1,19,1_HAL_1,8,0,1
+1_POR_1,18,1_HAL_1,8,2,1
+1_STA_1,7,1_GAR_1,19,3,0
+1_HAL_1,8,1_GAR_1,19,1,0
+1_HAL_1,8,1_GAR_1,19,1,0
+1_HAL_1,8,1_POR_1,18,1,2

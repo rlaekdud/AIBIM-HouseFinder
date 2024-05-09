@@ -1,0 +1,5 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+2_BED_1,2,2_STA_1,7,0,1
+2_BED_1,2,2_STA_1,7,0,1
+2_STA_1,7,2_BED_1,2,1,0
+2_STA_1,7,2_BED_1,2,1,0

@@ -1,0 +1,3 @@
+ID,Label,Adj_ID,Adj_Label,ID_encode,Adj_ID_encode
+2_BAT_1,4,2_HAL_1,8,0,1
+2_HAL_1,8,2_BAT_1,4,1,0
